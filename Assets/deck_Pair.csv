@@ -1,0 +1,24 @@
+Name,Type,Gold Cost,Mana Cost,Attack,Health,Attack Type,Effect,# of Copies
+Innate Cards,,,,,,,,8
+Worker,Worker,N/A,,,,N/A,,2
+R Solider,Unit,,,1,2,N/A,Affinity: This unit gets 1 attack for each other red solider next to it.,2
+G Solider,Unit,,,1,2,N/A,Bond: If another Green Solider is on the field at the end of the turn this unit may heal 1 health,2
+B Solider,Unit,,,1,2,Melee,Rivalry: While there is a Green Solider and a red Solider on the field this unit may move one additonal square,2
+Common Cards,,,,,,,,18
+R Fighter,Unit,1,,1,1,Melee,Affinity: For each other red Fighter on field this unit gets 1 additional attack,3
+G Fighter,Unit,1,,1,1,Melee,Bond: If there is another Green Fighter on the field this units gets a attack range of 2,3
+B Fighter,Unit,1,,1,1,Ranged,Rivalry: If there is a Red and Green Fighter this unit gains Siege,3
+Colorless Monster,Unit,3,,2,2,Melee / Siege,,3
+Blood Oath,Spell,2,2,,,N/A,Heal 3 friendly units of the same color by 1 hp,3
+Everlasting Bond,Spell,2,3,,,N/A,You may chose a color and  you can move 3 friendly units of that color by one space,2
+Unbroken Ties,Spell,3,2,,,N/A,Sacrifice a friendly Unit and summon a unit from hand that shares a name with one of the field,1
+Improved Workflow,Spell,,4,,,N/A,Workers gain a color and a name. Place a card from your hand or graveyard  underneath your works to represent their new color and name. ,
+,,,,,,N/A,,
+,,,,,,N/A,,
+Champion Cards,,,,,,,,3
+The Blue King,Unit,2,2,2,3,Melee,You may heal The Blue King one hp at the start of the round,1
+The Red Queen,Unit,2,2,2,3,Ranged,If The Blue King would take damage you may have The Red Queen take it instead,1
+The Apprentice,Unit,3,3,2,3,Melee,"When the Apprentice would die, instead flip it",1
+The Master (The Apprentice Flip),Unit,,,1,4,Melee,,0
+,Spell,,5,,,N/A,,0
+Total,,,,,,,,29
