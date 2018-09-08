@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -330,8 +330,8 @@ GameObject:
   - component: {fileID: 282840814}
   - component: {fileID: 282840813}
   - component: {fileID: 282840811}
-  - component: {fileID: 282840812}
   - component: {fileID: 282840815}
+  - component: {fileID: 282840812}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 282840810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a844fae318c05e94daa33c03aa617dd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 95758bf1c2ee4e04eae934928f3a86b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   path: Assets/cardFile.csv
@@ -417,13 +417,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 282840810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 676ee8c18068f8a4c982a4478feb6c47, type: 3}
+  m_Script: {fileID: 11500000, guid: e690c7e2389c6054794cc1a88ebb2363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenshotRelativeFilepath: ../Screenshots
-  cardTransform: {fileID: 444448859}
-  cardTemplate: {fileID: 444448860}
-  allCards: {fileID: 282840812}
+  screenshotRelativeFilepath: 
+  cardTransform: {fileID: 0}
+  cardTemplate: {fileID: 0}
+  allCards: {fileID: 0}
 --- !u!1 &285860053
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +766,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 444448858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e043f74dbe35142b80a9f2e429abc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a559f87dbc995a4493ee878c0a6278f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardFrames:
