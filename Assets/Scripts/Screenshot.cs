@@ -28,6 +28,11 @@ public class Screenshot : MonoBehaviour
         {
             Debug.LogError("The card transform was not set, unable to get the card list!");
         }
+
+        if(screenshotRelativeFilepath == null || screenshotRelativeFilepath == "")
+        {
+            Debug.LogWarning("The filepath for the output of the images wasn't set. The images will be dumped at the top of the file tree!");
+        }
     }
 
     public void ScreenshotAllCards()
@@ -69,6 +74,8 @@ public class Screenshot : MonoBehaviour
             Debug.LogError("Error message: " + ex.Message);
         }
 
+        fileName = SanitizeFileName(fileName, @"/\:*?""<>|");
+
         //Write to a file in the project folder
         File.WriteAllBytes(Path.Combine(path, fileName), bytes);
     }
@@ -86,5 +93,31 @@ public class Screenshot : MonoBehaviour
         }
 
         isScreenshotting = false;
+    }
+
+    string SanitizeFileName(string fileName, string badChars)
+    {
+        string returnString = "";
+        bool appendChar;
+
+        for (int i = 0; i < fileName.Length; i++)
+        {
+            appendChar = true;
+
+            for (int j = 0; j < badChars.Length; j++)
+            {
+                if(fileName[i] == badChars[j])
+                {
+                    appendChar = false;
+                }
+            }
+
+            if (appendChar)
+            {
+                returnString += fileName[i];
+            }
+        }
+
+        return returnString;
     }
 }
