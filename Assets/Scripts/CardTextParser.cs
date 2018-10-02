@@ -70,7 +70,22 @@ public class CardTextParser : MonoBehaviour
             addCard = false;
         }
 
-        card.name = tokenizedText[0];
+		int goldCost;
+		int manaCost; 
+		bool goldConvertedSuccessfully = int.TryParse(tokenizedText[2], out goldCost);
+		bool manaConvertedSuccessfully = int.TryParse(tokenizedText[3], out manaCost);
+
+		if (goldConvertedSuccessfully && goldCost > 0)
+		{
+			tokenizedText[2] += "G";
+		}
+
+		if (manaConvertedSuccessfully && manaCost > 0)
+		{
+			tokenizedText[3] += "M";
+		}
+
+		card.name = tokenizedText[0];
         card.goldCost = tokenizedText[2];
         card.manaCost = tokenizedText[3];
         card.effect = tokenizedText[7];
