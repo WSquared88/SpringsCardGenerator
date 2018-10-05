@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+enum CardBackgrounds
+{
+	Unit = 0,
+	Spell,
+	Worker,
+
+	CardBackgroundsCount,
+}
+
 public class DisplayCard : MonoBehaviour
 {
-	public Image[] cardFrames;
+	public GameObject[] cardFrames;
 	public Text nameText;
 	public Text goldText;
 	public Text manaText;
 	public Text attackText;
 	public Text healthText;
 	public Text effectText;
+	public Image SiegeIcon;
 
 	// Use this for initialization
 	void Start ()
@@ -35,18 +45,21 @@ public class DisplayCard : MonoBehaviour
 
 		if(card is Unit)
 		{
-			cardFrames[0].enabled = true;
+			cardFrames[(int)CardBackgrounds.Unit].SetActive(true);
 			Unit unit = card as Unit;
 			attackText.text = unit.attack;
 			healthText.text = unit.health;
+			attackText.enabled = true;
+			healthText.enabled = true;
+			SiegeIcon.enabled = true;
 		}
 		else if(card is Spell)
 		{
-			cardFrames[1].enabled = true;
+			cardFrames[(int)CardBackgrounds.Spell].SetActive(true);
 		}
 		else if(card is Worker)
 		{
-			cardFrames[2].enabled = true;
+			cardFrames[(int)CardBackgrounds.Worker].SetActive(true);
 		}
 	}
 
@@ -54,7 +67,11 @@ public class DisplayCard : MonoBehaviour
 	{
 		for(int i = 0;i<cardFrames.Length;i++)
 		{
-			cardFrames[i].enabled = false;
+			cardFrames[i].SetActive(false);
 		}
+
+		attackText.enabled = false;
+		healthText.enabled = false;
+		SiegeIcon.enabled = false;
 	}
 }

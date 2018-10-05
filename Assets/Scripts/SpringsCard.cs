@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum CardType
 {
-	None,
+	Invalid = -1,
 	Unit,
 	Worker,
 	Spell,
@@ -13,8 +13,9 @@ public enum CardType
 public abstract class SpringsCard : ScriptableObject
 {
 	public new string name;
-	//public CardType type;
+	public CardType type;
 	public string goldCost;
 	public string manaCost;
 	public string effect;
+	public bool hasSiege;
 }

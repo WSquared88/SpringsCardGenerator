@@ -5,9 +5,25 @@ using UnityEngine.UI;
 using System;
 using System.IO;
 
+enum CardParserItems
+{
+	CardName = 0,
+	CardType,
+	GoldCost,
+	ManaCost,
+	Attack,
+	Health,
+	AttackType,
+	HasSiege,
+	CardEffect,
+
+	CardParserItemsCount,
+}
+
 public class CardTextParser : MonoBehaviour
 {
-    public string path = "Assets/cardFile.csv";
+    public string pathWithoutExtension = "Assets/cardFile";
+	string pathExtension = ".tsv";
     public DisplayCard cardUI;
     public Dropdown cardDropdown;
     List<SpringsCard> cards = new List<SpringsCard>();
@@ -15,7 +31,7 @@ public class CardTextParser : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        StreamReader reader = new StreamReader(path);
+        StreamReader reader = new StreamReader(pathWithoutExtension + pathExtension);
         string line;
         List<string> cardNames = new List<string>();
 
@@ -42,27 +58,39 @@ public class CardTextParser : MonoBehaviour
 
     public string GenerateCard(string cardText)
     {
-        string[] tokenizedText = cardText.Split(',');
+        string[] tokenizedText = cardText.Split('\t');
         SpringsCard card;
         bool addCard = true;
 
-        if (tokenizedText[1] == CardType.Unit.ToString())
+        if (tokenizedText[(int)CardParserItems.CardType] == CardType.Unit.ToString())
         {
             Unit unit = new Unit();
-            unit.attack = tokenizedText[4];
-            unit.health = tokenizedText[5];
-            //unit.attackType = (AttackType)Enum.Parse(typeof(AttackType), tokenizedText[6]);
+            unit.attack = tokenizedText[(int)CardParserItems.Attack];
+            unit.health = tokenizedText[(int)CardParserItems.Health];
+            //unit.attackType = (AttackType)Enum.Parse(typeof(AttackType), tokenizedText[(int)CardParserItems.AttackType]);
+
+			if(tokenizedText[(int)CardParserItems.HasSiege] == "TRUE")
+			{
+				unit.hasSiege = true;
+			}
+			else
+			{
+				unit.hasSiege = false;
+			}
+
+			unit.type = CardType.Unit;
             card = unit;
-            //card.type = CardType.Unit;
         }
-        else if (tokenizedText[1] == CardType.Spell.ToString())
+        else if (tokenizedText[(int)CardParserItems.CardType] == CardType.Spell.ToString())
         {
             card = new Spell();
-        }
-        else if (tokenizedText[1] == CardType.Worker.ToString())
+			card.type = CardType.Spell;
+		}
+        else if (tokenizedText[(int)CardParserItems.CardType] == CardType.Worker.ToString())
         {
             card = new Worker();
-        }
+			card.type = CardType.Worker;
+		}
         else
         {
             //If tokenizedText[1] doesn't equal one of the other ifs then the line is probably one of the headers
@@ -72,23 +100,23 @@ public class CardTextParser : MonoBehaviour
 
 		int goldCost;
 		int manaCost; 
-		bool goldConvertedSuccessfully = int.TryParse(tokenizedText[2], out goldCost);
-		bool manaConvertedSuccessfully = int.TryParse(tokenizedText[3], out manaCost);
+		bool goldConvertedSuccessfully = int.TryParse(tokenizedText[(int)CardParserItems.GoldCost], out goldCost);
+		bool manaConvertedSuccessfully = int.TryParse(tokenizedText[(int)CardParserItems.ManaCost], out manaCost);
 
 		if (goldConvertedSuccessfully && goldCost > 0)
 		{
-			tokenizedText[2] += "G";
+			tokenizedText[(int)CardParserItems.GoldCost] += "G";
 		}
 
 		if (manaConvertedSuccessfully && manaCost > 0)
 		{
-			tokenizedText[3] += "M";
+			tokenizedText[(int)CardParserItems.ManaCost] += "M";
 		}
 
-		card.name = tokenizedText[0];
-        card.goldCost = tokenizedText[2];
-        card.manaCost = tokenizedText[3];
-        card.effect = tokenizedText[7];
+		card.name = tokenizedText[(int)CardParserItems.CardName];
+        card.goldCost = tokenizedText[(int)CardParserItems.GoldCost];
+        card.manaCost = tokenizedText[(int)CardParserItems.ManaCost];
+        card.effect = tokenizedText[(int)CardParserItems.CardEffect];
 
         if (addCard)
         {

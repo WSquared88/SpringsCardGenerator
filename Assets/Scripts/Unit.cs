@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum AttackType
 {
-	None,
+	Invalid = -1,
 	Melee,
 	Ranged,
 }
