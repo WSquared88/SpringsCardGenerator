@@ -67,7 +67,7 @@ public class CardTextParser : MonoBehaviour
             Unit unit = new Unit();
             unit.attack = tokenizedText[(int)CardParserItems.Attack];
             unit.health = tokenizedText[(int)CardParserItems.Health];
-            //unit.attackType = (AttackType)Enum.Parse(typeof(AttackType), tokenizedText[(int)CardParserItems.AttackType]);
+            unit.attackType = (AttackType)Enum.Parse(typeof(AttackType), tokenizedText[(int)CardParserItems.AttackType]);
 
 			if(tokenizedText[(int)CardParserItems.HasSiege] == "TRUE")
 			{
@@ -93,8 +93,9 @@ public class CardTextParser : MonoBehaviour
 		}
         else
         {
-            //If tokenizedText[1] doesn't equal one of the other ifs then the line is probably one of the headers
-            card = new Unit();
+			//If tokenizedText[(int)CardParserItems.CardType] doesn't equal one of the other ifs then the line is probably one of the headers
+			card = new Unit();
+			card.type = CardType.Invalid;
             addCard = false;
         }
 

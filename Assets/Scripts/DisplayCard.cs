@@ -20,6 +20,7 @@ public class DisplayCard : MonoBehaviour
 	public Text manaText;
 	public Text attackText;
 	public Text healthText;
+	public GameObject[] attackTypeImages;
 	public Text effectText;
 	public Image SiegeIcon;
 
@@ -43,23 +44,35 @@ public class DisplayCard : MonoBehaviour
 		manaText.text = card.manaCost;
 		effectText.text = card.effect;
 
-		if(card is Unit)
+		switch (card.type)
 		{
-			cardFrames[(int)CardBackgrounds.Unit].SetActive(true);
-			Unit unit = card as Unit;
-			attackText.text = unit.attack;
-			healthText.text = unit.health;
-			attackText.enabled = true;
-			healthText.enabled = true;
-			SiegeIcon.enabled = true;
-		}
-		else if(card is Spell)
-		{
-			cardFrames[(int)CardBackgrounds.Spell].SetActive(true);
-		}
-		else if(card is Worker)
-		{
-			cardFrames[(int)CardBackgrounds.Worker].SetActive(true);
+			case CardType.Unit:
+			{
+				cardFrames[(int)CardBackgrounds.Unit].SetActive(true);
+				Unit unit = card as Unit;
+				attackText.text = unit.attack;
+				healthText.text = unit.health;
+
+				if(unit.attackType > AttackType.Invalid)
+				{
+					attackTypeImages[(int)unit.attackType].SetActive(true);
+				}
+
+				attackText.enabled = true;
+				healthText.enabled = true;
+				SiegeIcon.enabled = true;
+				break;
+			}
+			case CardType.Spell:
+			{
+				cardFrames[(int)CardBackgrounds.Spell].SetActive(true);
+				break;
+			}
+			case CardType.Worker:
+			{
+				cardFrames[(int)CardBackgrounds.Worker].SetActive(true);
+				break;
+			}
 		}
 	}
 
@@ -68,6 +81,11 @@ public class DisplayCard : MonoBehaviour
 		for(int i = 0;i<cardFrames.Length;i++)
 		{
 			cardFrames[i].SetActive(false);
+		}
+
+		for(int i = 0;i<attackTypeImages.Length;i++)
+		{
+			attackTypeImages[i].SetActive(false);
 		}
 
 		attackText.enabled = false;
