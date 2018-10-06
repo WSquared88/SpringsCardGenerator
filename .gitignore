@@ -74,8 +74,17 @@ artifacts/
 *.csv
 *.png
 *.png.meta
+*.jpg
+*.jpg.meta
 *.jpeg
 *.jpeg.meta
+!Assets/Images/*.png
+!Assets/Images/*.png.meta
+!Assets/Images/*.jpg
+!Assets/Images/*.jpg.meta
+!Assets/Images/*.jpeg
+!Assets/Images/*.jpeg.meta
+
 
 # Chutzpah Test files
 _Chutzpah*
