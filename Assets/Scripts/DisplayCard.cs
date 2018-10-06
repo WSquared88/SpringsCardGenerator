@@ -8,6 +8,7 @@ enum CardBackgrounds
 	Unit = 0,
 	Spell,
 	Worker,
+    Token,
 
 	CardBackgroundsCount,
 }
@@ -73,6 +74,11 @@ public class DisplayCard : MonoBehaviour
 				cardFrames[(int)CardBackgrounds.Worker].SetActive(true);
 				break;
 			}
+            case CardType.Token:
+            {
+                cardFrames[(int)CardBackgrounds.Token].SetActive(true);
+                break;
+            }
 		}
 	}
 

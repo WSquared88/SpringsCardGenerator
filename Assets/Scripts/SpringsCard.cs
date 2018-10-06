@@ -8,6 +8,7 @@ public enum CardType
 	Unit,
 	Worker,
 	Spell,
+    Token
 }
 
 public abstract class SpringsCard : ScriptableObject

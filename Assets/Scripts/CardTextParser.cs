@@ -91,6 +91,25 @@ public class CardTextParser : MonoBehaviour
             card = new Worker();
 			card.type = CardType.Worker;
 		}
+        else if (tokenizedText[(int)CardParserItems.CardType] == CardType.Token.ToString())
+        {
+            Token unit = new Token();
+            unit.attack = tokenizedText[(int)CardParserItems.Attack];
+            unit.health = tokenizedText[(int)CardParserItems.Health];
+            unit.attackType = (AttackType)Enum.Parse(typeof(AttackType), tokenizedText[(int)CardParserItems.AttackType]);
+
+            if (tokenizedText[(int)CardParserItems.HasSiege] == "TRUE")
+            {
+                unit.hasSiege = true;
+            }
+            else
+            {
+                unit.hasSiege = false;
+            }
+
+            unit.type = CardType.Token;
+            card = unit;
+        }
         else
         {
 			//If tokenizedText[(int)CardParserItems.CardType] doesn't equal one of the other ifs then the line is probably one of the headers
