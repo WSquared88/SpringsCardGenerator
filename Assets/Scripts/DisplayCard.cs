@@ -77,6 +77,18 @@ public class DisplayCard : MonoBehaviour
             case CardType.Token:
             {
                 cardFrames[(int)CardBackgrounds.Token].SetActive(true);
+                Unit unit = card as Unit;
+                attackText.text = unit.attack;
+                healthText.text = unit.health;
+
+                if (unit.attackType > AttackType.Invalid)
+                {
+                    attackTypeImages[(int)unit.attackType].SetActive(true);
+                }
+
+                attackText.enabled = true;
+                healthText.enabled = true;
+                SiegeIcon.enabled = true;
                 break;
             }
 		}
