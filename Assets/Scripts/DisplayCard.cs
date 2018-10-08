@@ -61,7 +61,7 @@ public class DisplayCard : MonoBehaviour
 
 				attackText.enabled = true;
 				healthText.enabled = true;
-				SiegeIcon.enabled = true;
+				SiegeIcon.enabled = unit.hasSiege;
 				break;
 			}
 			case CardType.Spell:
@@ -88,7 +88,7 @@ public class DisplayCard : MonoBehaviour
 
                 attackText.enabled = true;
                 healthText.enabled = true;
-                SiegeIcon.enabled = true;
+                SiegeIcon.enabled = unit.hasSiege;
                 break;
             }
 		}
